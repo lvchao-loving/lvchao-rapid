@@ -1,0 +1,5 @@
+# Project exclude paths
+/rapid-common/target/
+/rapid-core/target/
+/rapid-discovery/rapid-discovery-api/target/
+/rapid-discovery/rapid-discovery-etcd/target/

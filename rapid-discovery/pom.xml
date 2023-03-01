@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>lvchao-rapid</artifactId>
+        <groupId>com.lvchao</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>rapid-discovery</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>rapid-discovery-api</module>
+        <module>rapid-discovery-etcd</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <rapid-commonn.version>1.0.0-SNAPSHOT</rapid-commonn.version>
+        <rapid-discovery-api.version>1.0.0-SNAPSHOT</rapid-discovery-api.version>
+        <jetcd-core.version>0.5.4</jetcd-core.version>
+        <lombok.version>1.18.0</lombok.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.lvchao</groupId>
+                <artifactId>rapid-common</artifactId>
+                <version>${rapid-commonn.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.etcd</groupId>
+                <artifactId>jetcd-core</artifactId>
+                <version>${jetcd-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lvchao</groupId>
+                <artifactId>rapid-discovery-api</artifactId>
+                <version>${rapid-discovery-api.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
