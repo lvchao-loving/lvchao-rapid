@@ -73,10 +73,9 @@ public class RapidContext extends BasicContext{
 
         public RapidContext build() {
             AssertUtil.notNull(protocol, "protocol不能为空");
-            // TODO 这里因为不会创建 ChannelHandlerContext 所以暂时注释掉了
-            // AssertUtil.notNull(nettyCtx, "nettyCtx不能为空");
-            // AssertUtil.notNull(rapidRequest, "rapidRequest不能为空");
-            // AssertUtil.notNull(rule, "rule不能为空");
+            AssertUtil.notNull(nettyCtx, "nettyCtx不能为空");
+            AssertUtil.notNull(rapidRequest, "rapidRequest不能为空");
+            AssertUtil.notNull(rule, "rule不能为空");
             return new RapidContext(protocol, nettyCtx, keepAlive, rapidRequest, rule);
         }
     }

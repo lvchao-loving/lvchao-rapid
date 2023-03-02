@@ -34,7 +34,7 @@ public class NettyCoreProcessor implements NettyProcessor{
     @Override
     public void process(HttpRequestWrapper wrapper) {
         try {
-            //	1. 解析FullHttpRequest, 把他转换为我们自己想要的内部对象：Context
+            //	1.解析FullHttpRequest, 把他转换为我们自己想要的内部对象：Context
             RapidContext rapidContext = RequestHelper.doContext(wrapper);
 
             //	2. 执行整个的过滤器逻辑：FilterChain
