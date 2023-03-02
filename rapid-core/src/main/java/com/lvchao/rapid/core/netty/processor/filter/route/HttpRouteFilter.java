@@ -47,7 +47,7 @@ public class HttpRouteFilter extends AbstractEntryProcessorFilter<FilterConfigur
     /**
      * SR(Server[Rapid-Core] Received):	服务器接收到网络请求
      * SS(Server[Rapid-Core] Send):		服务器写回请求
-     * RS(Route Send):						客户端发送请求
+     * RS(Route Send):					客户端发送请求
      * RR(Route Received): 				客户端收到请求
      */
     @Override
@@ -55,7 +55,7 @@ public class HttpRouteFilter extends AbstractEntryProcessorFilter<FilterConfigur
 
         RapidContext rapidContext = (RapidContext) context;
 
-        // 构建请求的 Request
+        // 构建请求的 Request，该 Request 为 AsyncHttpClient 包的
         Request request = rapidContext.getRequestMutale().build();
 
         // 设置路由开始时间

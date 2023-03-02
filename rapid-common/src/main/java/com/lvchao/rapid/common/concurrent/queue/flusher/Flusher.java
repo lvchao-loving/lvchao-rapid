@@ -1,10 +1,12 @@
 package com.lvchao.rapid.common.concurrent.queue.flusher;
 
 /**
- * <B>主类名称：</B>Flusher<BR>
- * <B>概要说明：</B>Flusher接口定义<BR>
- * @author JiFeng
- * @since 2021年12月7日 上午12:21:03
+ * <p>
+ * Flusher接口定义
+ * <p/>
+ *
+ * @author lvchao
+ * @param <E>
  */
 public interface Flusher<E> {
 

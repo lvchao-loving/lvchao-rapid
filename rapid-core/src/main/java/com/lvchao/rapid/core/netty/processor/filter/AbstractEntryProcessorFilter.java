@@ -1,5 +1,6 @@
 package com.lvchao.rapid.core.netty.processor.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.lvchao.rapid.common.config.Rule;
 import com.lvchao.rapid.common.constants.BasicConst;
@@ -57,6 +58,7 @@ public abstract class AbstractEntryProcessorFilter<FilterConfigClass> extends Ab
     @Override
     public void transformEntry(Context ctx, Object... args) throws Throwable {
         FilterConfigClass filterConfigClass = dynamicLoadCache(ctx, args);
+        log.info("当前filer class：{}，参数值：{}", this.getClass().getName() ,JSON.toJSONString(filterConfigClass));
         super.transformEntry(ctx, filterConfigClass);
     }
 

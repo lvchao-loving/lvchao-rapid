@@ -37,6 +37,8 @@ public interface ProcessorFilter<T> {
 
     /**
      * 对象传输的方法
+     * TODO： 为什么会有这个方法，目前的考虑是 在进入 entry()方法的时候需要将解析上下文中的参数并且设置到 args 的位置，所以参数转化；其次在阅读
+     *        sentinel 源码的时候也用到了请求链的方式，并且也存在 transformEntry()
      * @param t
      * @param args
      * @throws Throwable

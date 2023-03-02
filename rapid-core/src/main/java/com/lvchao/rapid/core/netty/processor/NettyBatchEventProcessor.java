@@ -35,11 +35,11 @@ public class NettyBatchEventProcessor implements NettyProcessor {
         this.nettyCoreProcessor = nettyCoreProcessor;
         // 创建 ParallelFlusher 的 builder 对象
         ParallelFlusher.Builder<HttpRequestWrapper> builder = new ParallelFlusher.Builder<HttpRequestWrapper>()
-                .setBufferSize(rapidConfig.getBufferSize())
-                .setThreads(rapidConfig.getProcessThread())
-                .setProducerType(ProducerType.MULTI)
-                .setNamePrefix(THREAD_NAME_PREFIX)
-                .setWaitStrategy(rapidConfig.getATureWaitStrategy())
+                .setBufferSize(rapidConfig.getBufferSize()) // 网关队列：内存队列大小  1024 * 16;
+                .setThreads(rapidConfig.getProcessThread()) // 服务器的CPU核数映射的线程数
+                .setProducerType(ProducerType.MULTI) // 多生产者类型
+                .setNamePrefix(THREAD_NAME_PREFIX) // 设置 线程名称前缀
+                .setWaitStrategy(rapidConfig.getATureWaitStrategy()) // 等待策略 WaitStrategy子类
                 // TODO 添加 BatchEventProcessorListener 的作用
                 .setEventListener(new BatchEventProcessorListener());
         this.parallelFlusher = builder.build();

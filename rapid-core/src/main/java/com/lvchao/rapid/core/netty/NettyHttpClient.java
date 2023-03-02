@@ -40,15 +40,15 @@ public class NettyHttpClient implements LifeCycle {
     public void init() {
         clientBuilder = new DefaultAsyncHttpClientConfig.Builder()
                 .setFollowRedirect(false)
-                .setEventLoopGroup(eventLoopGroupWork)
-                .setConnectTimeout(rapidConfig.getHttpConnectTimeout())
-                .setRequestTimeout(rapidConfig.getHttpRequestTimeout())
-                .setMaxRequestRetry(rapidConfig.getHttpMaxRequestRetry())
-                .setAllocator(PooledByteBufAllocator.DEFAULT)
-                .setCompressionEnforced(true)
-                .setMaxConnections(rapidConfig.getHttpMaxConnections())
-                .setMaxConnectionsPerHost(rapidConfig.getHttpConnectionsPerHost())
-                .setPooledConnectionIdleTimeout(rapidConfig.getHttpPooledConnectionIdleTimeout());
+                .setEventLoopGroup(eventLoopGroupWork) // work 线程数这里启动的是一个线程
+                .setConnectTimeout(rapidConfig.getHttpConnectTimeout()) // 连接超时时间 30 * 1000
+                .setRequestTimeout(rapidConfig.getHttpRequestTimeout()) // 请求超时时间 30 * 1000
+                .setMaxRequestRetry(rapidConfig.getHttpMaxRequestRetry()) // 客户端请求重试次数 2
+                .setAllocator(PooledByteBufAllocator.DEFAULT) // 内存分配 池化的直接内存
+                .setCompressionEnforced(true) // 强制压缩 true
+                .setMaxConnections(rapidConfig.getHttpMaxConnections()) // 客户端请求最大连接数 10000
+                .setMaxConnectionsPerHost(rapidConfig.getHttpConnectionsPerHost()) // 客户端每个地址支持的最大连接数 8000 TODO 需要学习一下这个参数
+                .setPooledConnectionIdleTimeout(rapidConfig.getHttpPooledConnectionIdleTimeout()); // 客户端空闲连接超时时间, 默认60秒
     }
 
     @Override

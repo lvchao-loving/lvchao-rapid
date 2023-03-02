@@ -25,28 +25,10 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance{
     //	实例未更新时长阈值，默认为60秒；若未更新时长超过阈值后会移除掉
     private static final int RECYCLE_PERIOD = 60000;
 
-    List<ServiceInstance> serviceInstanceList = new ArrayList<>();
-    {
-        for (int i = 1; i <= 4; i++) {
-            ServiceInstance serviceInstance = new ServiceInstance();
-            serviceInstanceList.add(serviceInstance);
-            serviceInstance.setServiceInstanceId(i + "");
-            serviceInstance.setUniqueId("version:" + i);
-            serviceInstance.setVersion(i + "");
-            serviceInstance.setAddress("address:" + i);
-            serviceInstance.setWeight(i * 10);
-        }
-    }
-
-    private AtomicInteger a = new AtomicInteger(0);
-
     @Override
     protected ServiceInstance doSelect(RapidContext context, List<ServiceInstance> instances) {
         //	原生请求路径
-        List<String> list = Arrays.asList("/test01", "/test02", "/test03", "/test04");
-        Random random = new Random();
-        String path = "/test01";//list.get(a.getAndIncrement() - 1 %4);
-  //      System.err.println("当前执行的 path:" + path);
+        String path = context.getRequest().getPath();
         //	如果不存在该path则创建一个map集合
         ConcurrentMap<String, WeightedRoundRobin> map = pathWeightMap.computeIfAbsent(path, key -> new ConcurrentHashMap<>());
 
@@ -55,7 +37,7 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance{
         long now = System.currentTimeMillis();
         ServiceInstance selectedInstance = null;
         WeightedRoundRobin selectedWRR = null;
-        for (ServiceInstance instance : serviceInstanceList) {
+        for (ServiceInstance instance : instances) {
             // 获取服务实例地址
             String address = instance.getAddress();
             // 获取服务实例权重

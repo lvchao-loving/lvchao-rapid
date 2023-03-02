@@ -14,12 +14,11 @@ import java.util.concurrent.CompletableFuture;
  */
 public class AsyncHttpHelper {
 
-    private static final class SingletonHolder {
-        private static final AsyncHttpHelper INSTANCE = new AsyncHttpHelper();
+    private AsyncHttpHelper() {
     }
 
-    private AsyncHttpHelper() {
-
+    private static final class SingletonHolder {
+        private static final AsyncHttpHelper INSTANCE = new AsyncHttpHelper();
     }
 
     public static AsyncHttpHelper getInstance() {

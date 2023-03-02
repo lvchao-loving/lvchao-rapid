@@ -166,7 +166,7 @@ public class RapidRequest implements RapidRequestMutable{
         this.modifyPath = path;
         this.modifyScheme = BasicConst.HTTP_PREFIX_SEPARATOR;
         this.requestBuilder = new RequestBuilder();
-        this.requestBuilder.setMethod(getMethod().name());
+        this.requestBuilder.setMethod(getMethod().name()); // "GET"
         this.requestBuilder.setHeaders(getHeaders());
         this.requestBuilder.setQueryParams(queryDecoder.parameters());
         ByteBuf contentBuffer = fullHttpRequest.content();
@@ -246,7 +246,7 @@ public class RapidRequest implements RapidRequestMutable{
 
     @Override
     public String getFinalUrl() {
-        return modifyScheme + modifyHost + modifyPath;
+        return modifyScheme + modifyHost + modifyPath; // http://localhost:9001/testGet
     }
 
 

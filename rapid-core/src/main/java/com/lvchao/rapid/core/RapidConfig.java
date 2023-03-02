@@ -91,7 +91,7 @@ public class RapidConfig {
     private String bufferType = RapidBufferHelper.FLUSHER;
 
     /**
-     * 网关队列：内存队列大小
+     * 网关队列：内存队列大小  1024 * 16;
      */
     private int bufferSize = 1024 * 16;
 
@@ -105,27 +105,27 @@ public class RapidConfig {
     //	Http Async 参数选项：
 
     /**
-     * 连接超时时间
+     * 连接超时时间 30 * 1000
      */
     private int httpConnectTimeout = 30 * 1000;
 
     /**
-     * 请求超时时间
+     * 请求超时时间 30 * 1000
      */
     private int httpRequestTimeout = 30 * 1000;
 
     /**
-     * 客户端请求重试次数
+     * 客户端请求重试次数 2
      */
     private int httpMaxRequestRetry = 2;
 
     /**
-     * 客户端请求最大连接数
+     * 客户端请求最大连接数 10000
      */
     private int httpMaxConnections = 10000;
 
     /**
-     * 客户端每个地址支持的最大连接数
+     * 客户端每个地址支持的最大连接数 8000
      */
     private int httpConnectionsPerHost = 8000;
 
